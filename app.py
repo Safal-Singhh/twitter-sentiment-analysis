@@ -1,6 +1,5 @@
 import streamlit as st
 import mysql.connector
-import os
 from twitter_fetch import fetch_and_store_tweets, fetch_stored_tweets
 
 # Custom CSS to improve UI appearance
@@ -22,6 +21,17 @@ st.markdown("""
             font-weight: 400;
             color: #444;
             text-align: center;
+        }
+        .card {
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .card-header {
+            font-size: 25px;
+            color: #2c6b2f;
         }
         .tweet-container {
             border: 1px solid #e0e0e0;
@@ -50,16 +60,29 @@ st.markdown("""
         .neutral {
             background-color: #9e9e9e;
         }
+        .btn {
+            background-color: #388e3c;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .btn:hover {
+            background-color: #66bb6a;
+        }
+        .input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 80%;
+            margin: 10px 0;
+        }
     </style>
 """, unsafe_allow_html=True)
 
-# Connect to MySQL using environment variables
-conn = mysql.connector.connect(
-    host=os.getenv("DB_HOST", "mysql_host"),
-    user=os.getenv("DB_USER", "i_am_user"),
-    password=os.getenv("DB_PASSWORD", "123Csk738"),
-    database=os.getenv("DB_NAME", "twitter_sentiment_db")
-)
+# Connect to MySQL
+conn = mysql.connector.connect(host="localhost", user="root", password="Csk738", database="twitter_sentiment_db")
 cursor = conn.cursor()
 
 # Streamlit UI
@@ -73,6 +96,15 @@ search_option = st.selectbox("Choose your search option:", ["Fetch Tweets from T
 
 # Text input for keyword
 keyword = st.text_input("Enter Keyword to Search", key="keyword", placeholder="e.g., Python, AI, etc.")
+
+# Apply custom CSS to style the input field
+st.markdown("""
+    <style>
+        .streamlit-expanderHeader {
+            font-size: 20px;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 # Buttons and search functionality
 if search_option == "Fetch Tweets from Twitter":
