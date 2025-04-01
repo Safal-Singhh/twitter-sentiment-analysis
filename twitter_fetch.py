@@ -11,11 +11,11 @@ client = tweepy.Client(bearer_token=BEARER_TOKEN)
 
 # Connect to MySQL Database using environment variables
 conn = mysql.connector.connect(
-    host=os.getenv("MYSQL_HOST", "mysql.railway.internal"),
+    host=os.getenv("MYSQL_HOST", "mysql_host"),
     port=os.getenv("MYSQL_PORT", "3306"),
-    user=os.getenv("MYSQL_USER", "root"),
-    password=os.getenv("MYSQL_PASSWORD", "ahGZGJsYfAuFNsLmCbvpLLnFPiDGoQBX"),
-    database=os.getenv("MYSQL_DB", "railway")
+    user=os.getenv("MYSQL_USER", "i_am_user"),
+    password=os.getenv("MYSQL_PASSWORD", "123Csk738"),
+    database=os.getenv("MYSQL_DB", "twitter_sentiment_db")
 )
 cursor = conn.cursor()
 

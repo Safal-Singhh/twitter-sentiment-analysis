@@ -55,10 +55,10 @@ st.markdown("""
 
 # Connect to MySQL using environment variables
 conn = mysql.connector.connect(
-    host=os.getenv("DB_HOST", "mysql.railway.internal"),
-    user=os.getenv("DB_USER", "root"),
-    password=os.getenv("DB_PASSWORD", "ahGZGJsYfAuFNsLmCbvpLLnFPiDGoQBX"),
-    database=os.getenv("DB_NAME", "railway")
+    host=os.getenv("DB_HOST", "mysql_host"),
+    user=os.getenv("DB_USER", "i_am_user"),
+    password=os.getenv("DB_PASSWORD", "123Csk738"),
+    database=os.getenv("DB_NAME", "twitter_sentiment_db")
 )
 cursor = conn.cursor()
 
